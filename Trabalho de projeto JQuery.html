@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	#side{
+		width: 10%; height: 10%; padding: 0.5em;
+		background-image: url("scary.jpg");
+		color: orange;
+		border-radius: 20px;
+		border: 5px solid black;
+		padding: 6% 7%;
+		
+	}
+	.familia{
+		background: none;
+		border-radius: 20px;
+		border: 2px solid black;
+		padding: 30px 30px;
+		outline: none;
+	}
+	.Thrump{
+    	width: 17%; height: 55%; padding: 0.5em;
+		background-image: url("donald.jpg");
+		text-align: center;
+    	}
+	.progressbar{
+		left:50%;
+    	top:50%;
+	}
+	#back{
+		position:absolute;
+    	background:white;
+    	left:0%;
+    	top:100%;
+    }
+    .canto_d{
+    	position:absolute;
+    	border-radius: 20px;
+		border: 5px solid black;
+		padding: 20px 25px;
+    	left:80%;
+    	top:0%;
+	}
+	br {
+   		line-height:70px;
+	}
+	body, html {
+    	height: 100%;
+    }
+    #start{
+    	background: #00FFFF;
+    	padding: 30px 35px;
+   	 	border: 5px solid black;
+
+    }
+	body{
+		position: relative;
+		background: url("sky.jpg");
+		background-position: center;
+    	background-repeat: no-repeat;
+    	background-size: cover;
+    	height: 80%;
+    	width: 90%;
+	}
+	.jogo{
+		height: 100%;
+		width: 100%;
+		position: relative
+	}
+
+	button{
+		background: none;
+		border-radius: 20px;
+		border: 2px solid black;
+		padding: 20px 25px;
+		outline: none;
+	}
+</style>
+<script src="jquery-3.3.1.min.js">
+</script>
+<script type="text/javascript" src="dscountdown.js"></script>
+<link rel="stylesheet" href="dscountdown.css" type="text/css" />
+<script src="jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+<link rel="stylesheet" href="jquery-ui-1.12.1.custom/jquery-ui.css" />
+	<script>
+		$(document).ready(function(){		
+			$("#start").click(function(){
+				$(".pagina_inicial").hide()
+				$(".jogo").show( "explode", 1000 );
+				// Imagem que aparece logo no inicio da pagina mas é so suposto aparecer quando clickado no botão #start e aparece resizable
+				$( ".Thrump" ).resizable();
+				//Jogo que não consegui desenvolver entretanto
+				$(".enemy_1").$(".enemy_2").$(".enemy_3").$(".enemy_4").mouseover(function(){
+					alert("Morreu!!!");
+					$(".jogo").hide()
+					$(".pagina_inicial").show( "scale", 1000 );
+				})
+			})
+			$("#info").click(function(){
+				$(".infoc").show( "clip", 1000 );
+				$(".pagina_inicial").hide()
+
+			})
+			$("#skins").click(function(){
+				$(".pagina_inicial").hide()
+				$(".skinsc").show( "drop", 1000 );
+				/*
+				$.ajax({
+				type: 'GET',
+				url: 'orders.js',
+				success: function(data){
+				$.each(JSON.parse(data), function(i, order){
+					$('#orders').append('<li>name: '+ order.name +', drink: '+ order.drink +'</li>');
+				});
+				}	*/
+
+			})
+			$("#opções").click(function(){
+				$(".pagina_inicial").hide()
+				$(".opçõesc").show( "pulsate", 1000 );
+				
+			})
+			// Botão para voltar a pagina inicial
+			$("#back").click(function(){
+				$(".opçõesc").hide()
+				$(".skinsc").hide()
+				$(".infoc").hide()
+				$(".jogo").hide()
+				$(".pagina_inicial").show( "fold", 1000 );
+			})
+			// Barra de contagem para o proximo update
+			$('.contagem').dsCountDown({
+					endDate: new Date("December 30, 2018 22:30:00")
+			})
+			//Progresso da progressbar a carrega , ( mais ou menos)
+			$( ".progressbar" ).progressbar({
+      			value: 0
+      			})
+			setTimeout(function() {
+				$( ".progressbar" ).progressbar({
+      			value: 99
+      			})
+   			}, 3000)
+   			//Para escolher a data em que se encontra
+   			$( "#datepicker" ).datepicker();
+   			//O novo mode de vista com traverssings ( tentei fazer com o toogle)
+   			$("#side").click(function(){
+   				$("#side").siblings().css({"color":"Orange",
+					"outline": "dotted",
+					"background-color":"black"})
+   				$(".pagina_inicial").parent().css({"background-image" : "none",
+   					"background-color":"black"})
+   				$("body").css({"color" : "white"})
+   				$(".skinsc").child().css({"color":"purple"})
+
+			})
+		})	
+
+
+
+	</script>
+	<!-- Musica de ambiente -->
+	<iframe width="0" height="0" src="The Pink Panther Theme Song.mp3" frameborder="0" allowfullscreen repeat></iframe>
+	
+
+
+<title>Skettit</title>
+</head>
+<body>
+	<div class="pagina_inicial" align="center">
+		<font size=8>
+			<h3>Skettit</h3>
+		</font>
+		<button id="start">Jogar</button> <br>
+		<br>
+		<button id="info">Como Jogar</button> <br>
+		<button id="skins">Skins</button> <br>
+		<button id="opções">Opções</button> <br>
+		<button id="side"> </button>
+		</div>  
+    </div>
+	<div class="jogo" hidden>
+		<div class="progressbar"></div>
+		<!--Resizable-->
+			<div class="Thrump"><font size=5><b>Please hide me</b></font><br>
+			</div>
+		</div>
+	</div>
+	<div class="infoc" hidden>
+		<div class="data">Data: <input type="text" id="datepicker"></div>
+		<!-- Bara de contagem -->
+		<div class="canto_d" align="center">
+			Proxima Atualização em : 
+			<div class="contagem">
+			</div>
+		</div>
+
+
+	</div>
+	<div class="skinsc" hidden>
+		<h2>Estamos a precisar de skins para o jogo se tiver alguma ideia adicione o nome da skin e o custo e nos pensaremos sobre o caso</h2>
+		<ul id="orders"></ul>
+
+		<h4>Adicione a skin e o custo</h4>
+		<p>Skin: <input type="text" id="skin"></p>
+		<p>Custo: <input type="text" id="custo"></p>
+	<button id="add-order">Adicionar</button>
+	</div>
+		
+	</div>
+	<div class="opçõesc" hidden>
+		<!--Data-->
+		<div class="data">Data: <input type="text" id="datepicker"></div>		
+	
+		
+	</div>
+	<button id="back">Pagina Inicial</button>
+
+		
+	
+
+
+</body>
+</html>
