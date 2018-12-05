@@ -1,18 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
 
-<?php
-   if( $_GET["name"] || $_GET["age"] ) {
-      echo "Bem-vindo ". $_GET['name']. ".<br />";
-      echo "Voce tem ". $_GET['age']. " anos.";
-   }
+<head>
+    <meta charset="UTF-8">
+    <title>Tabuada - Curso PHP - eXcript</title>
+</head>
+
+<body>
+    <?php
+    $tab = 0;
+    if(isset($_POST["edTABUADA"])){
+        $tab = $_POST["edTABUADA"];
+        if(!is_numeric($tab)){
+            echo "<br>O valor informado não é um número.<br>";
+        }else{
+        $num=0;
+        while($num<=10){
+            echo $num . " x " . $tab . " = " . ($num * $tab) . "<br>";
+            $num++;
+        }
+    }
+}
+
 ?>
-<html>
-   <body>
-      <form action = "<?php $_PHP_SELF ?>" method = "GET">
-         Nome: <input type = "text" name = "nome" />
-         Idade: <input type = "text" name = "idade" />
-         Quer inserir mais pessoas: <input type="text" name="mais"/>   
-         <input type = "submit" />
-      </form>
-      
-   </body>
+
+<form method="post">
+    <input type="text" name="edTABUADA" >
+    <input type="submit">
+</form>
+
+</body>
+
+
 </html>
