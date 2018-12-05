@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Tabuada - Curso PHP - eXcript</title>
+    <title>Tabuadat</title>
 </head>
 
 <body>
@@ -12,7 +11,7 @@
     if(isset($_POST["edTABUADA"])){
         $tab = $_POST["edTABUADA"];
         if(!is_numeric($tab)){
-            echo "<br>O valor informado não é um número.<br>";
+            echo "<br>O valor introduzido não é um numero.<br>";
         }else{
         $num=0;
         while($num<=10){
